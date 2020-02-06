@@ -12,14 +12,14 @@ function calculateQuadraticEquation(){
 
 function getResult(a,b,c){
         let x = [];
-        let descr = Math.pow(b, 2) - 4 * a * c;
-        if (descr < 0) {
-            console.log(`The discriminant is negative (${descr}). Equation has no real roots.`);
-        } else if (descr = 0) {
-            x[0] = (-b + Math.sqrt(descr)) / (2 * a);
+        let discriminant = Math.pow(b, 2) - 4 * a * c;
+        if (discriminant < 0) {
+            x = [];
+        } else if (discriminant > 0) {
+            x[0] = (-b + Math.sqrt(discriminant)) / (2 * a);
+            x[1] = (-b - Math.sqrt(discriminant)) / (2 * a);
         } else {
-            x[0] = (-b + Math.sqrt(descr)) / (2 * a);
-            x[1] = (-b - Math.sqrt(descr)) / (2 * a);
+            x[0] = (-b + Math.sqrt(discriminant)) / (2 * a);
         }
     return x;
 }
@@ -33,26 +33,32 @@ function calculateAverageRating(){
     window.averageMark.textContent = averageMark;
 }
 
-function getAverageMark(marks){
-    marks = [];
 
-    function getAverageMark(marks) {
+function getAverageMark(marks){
+        let marks = [];
         let range = marks.length;
         let rangeSum = 0;
-        let avgMark;
+        let averageMark;
 
-        if (range > 5) {
-            console.log(`There are ${range} marks! Maximum available is 5.`);
-            console.log(`Initial 5 marks are: ${marks.slice(0, 5)}.`);
-            console.log(`Please delete ${range - 5} mark(s) and try again.`);
-        } else {
-            for (i = 0; i < range; i++) {
-                rangeSum =  rangeSum + marks[i];
-                avgMark = rangeSum / range;
-            }
-            console.log(`The average mark is ${avgMark}.`);
-            console.log(`It has been calculated based on ${range} marks.`)
+    if (range > 5) {
+        let marksCut = marks.slice(0, 5);
+        let rangeCut = marksCut.length;
+
+        for (i = 0; i < rangeCut; i++) {
+            rangeSum =  rangeSum + marksCut[i];
         }
+        avgMark = rangeSum / rangeCut;
+
+        console.log(`There are ${range} marks! Maximum available is 5.`);
+        console.log(`${range - 5} surplus mark(s) were input. Average mark of the first five is ${avgMark}.`);
+
+    } else {
+        for (i = 0; i < range; i++) {
+            rangeSum =  rangeSum + marks[i];
+        }
+        avgMark = rangeSum / range;
+        console.log(`The average mark is ${avgMark}.`);
+        console.log(`It has been calculated based on ${range} marks.`)
     }
     getAverageMark([5, 4, 5, 4, 5, 2])
 
