@@ -13,17 +13,17 @@ function calculateQuadraticEquation(){
 function getResult(a,b,c){
         let x = [];
         let discriminant = Math.pow(b, 2) - 4 * a * c;
-        if (discriminant < 0) {
-            x = [];
-        } else if (discriminant > 0) {
-            x[0] = (-b + Math.sqrt(discriminant)) / (2 * a);
-            x[1] = (-b - Math.sqrt(discriminant)) / (2 * a);
-        } else {
-            x[0] = (-b + Math.sqrt(discriminant)) / (2 * a);
-        }
+
+    if (discriminant < 0) {
+        x = [];
+    } else if (discriminant > 0) {
+        x[0] = (-b + Math.sqrt(discriminant)) / (2 * a);
+        x[1] = (-b - Math.sqrt(discriminant)) / (2 * a);
+    } else {
+        x[0] = -b  / (2 * a);
+    }
     return x;
 }
-
 
 
 
@@ -33,37 +33,30 @@ function calculateAverageRating(){
     window.averageMark.textContent = averageMark;
 }
 
-
-function getAverageMark(marks){
-        let marks = [];
-        let range = marks.length;
-        let rangeSum = 0;
-        let averageMark;
+function getAverageMark(marks) {
+    let range = marks.length;
+    let rangeSum = 0;
 
     if (range > 5) {
         let marksCut = marks.slice(0, 5);
         let rangeCut = marksCut.length;
 
-        for (i = 0; i < rangeCut; i++) {
+        for (let i = 0; i < rangeCut; i++) {
             rangeSum =  rangeSum + marksCut[i];
         }
-        avgMark = rangeSum / rangeCut;
 
         console.log(`There are ${range} marks! Maximum available is 5.`);
-        console.log(`${range - 5} surplus mark(s) were input. Average mark of the first five is ${avgMark}.`);
-
+        console.log(`${range - 5} surplus mark(s) were input. Average mark of the first five is ${rangeSum / rangeCut}.`);
     } else {
-        for (i = 0; i < range; i++) {
+        for (let i = 0; i < range; i++) {
             rangeSum =  rangeSum + marks[i];
         }
-        avgMark = rangeSum / range;
-        console.log(`The average mark is ${avgMark}.`);
+        console.log(`The average mark is ${rangeSum / range}.`);
         console.log(`It has been calculated based on ${range} marks.`)
     }
-    getAverageMark([5, 4, 5, 4, 5, 2])
 
-    return averageMark;
 }
+getAverageMark();
 
 function calculateDrinkTask(){
     let name = window.personName.value;
@@ -73,7 +66,14 @@ function calculateDrinkTask(){
 }
 
 function askDrink(name,dateOfBirthday){
-    // код для задачи №3 писать здесь
-    //console.log(result)
-    //return result;
+    let result;
+    let visitorYear = dateOfBirthday.getFullYear();
+    let today = new Date().getFullYear();
+    if (today - visitorYear >= 18) {
+        result = `Не желаете ли олд-фэшн, ${name}?`;
+    } else {
+        result = `Сожалею, ${name}, но я не могу вам продать алкоголь. Зато могу предложить вам замечательный клюквенный компот!`
+    }
+    console.log(result)
+    return result;
 }
