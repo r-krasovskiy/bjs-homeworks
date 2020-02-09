@@ -34,29 +34,28 @@ function calculateAverageRating(){
 }
 
 function getAverageMark(marks) {
-    let range = marks.length;
+    let marksNew = Array.from(marks);
+    let range = marksNew.length;
     let rangeSum = 0;
+    let averageMark;
 
     if (range > 5) {
-        let marksCut = marks.slice(0, 5);
+        let marksCut = marksNew.slice(0, 5);
         let rangeCut = marksCut.length;
 
         for (let i = 0; i < rangeCut; i++) {
             rangeSum =  rangeSum + marksCut[i];
         }
-
-        console.log(`There are ${range} marks! Maximum available is 5.`);
-        console.log(`${range - 5} surplus mark(s) were input. Average mark of the first five is ${rangeSum / rangeCut}.`);
+        averageMark = `There are ${range} marks! Maximum available is 5. ${range - 5} surplus mark(s) were removed. Average mark of the first five is ${rangeSum / rangeCut}.`;
     } else {
         for (let i = 0; i < range; i++) {
-            rangeSum =  rangeSum + marks[i];
+            rangeSum =  rangeSum + marksNew[i];
         }
-        console.log(`The average mark is ${rangeSum / range}.`);
-        console.log(`It has been calculated based on ${range} marks.`)
+        averageMark = `The average mark is ${rangeSum / range}. It has been calculated based on ${range} marks.`;
     }
-
+    return(averageMark);
 }
-getAverageMark();
+
 
 function calculateDrinkTask(){
     let name = window.personName.value;
