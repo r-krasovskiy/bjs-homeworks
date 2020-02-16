@@ -32,3 +32,45 @@ function showSolutionsMessage (a, b, c) {
 }
 
 showSolutionsMessage(4, 20, -3)
+
+
+//Assignmen 2
+function getAverageScore(data) {
+    let value = new Object();
+    for (let prop in data) {
+        value[prop] = getAverageMark(data[prop]);
+    }
+    let averageSum = 0;
+    let propSum = 0;
+    for (let prop in value) {
+        averageSum += value[prop];
+        propSum++;
+    }
+    let averageScore = averageSum / propSum;
+    let averageProp;
+    value[averageProp] = averageScore;
+    return value;
+}
+
+function getAverageMark(marks) {
+    let sum = 0;
+    for (let i = 0; i < marks.length; i++) {
+        sum += marks[i];
+    }
+    let result = sum / marks.length;
+    return result;
+}
+
+console.log(
+    getAverageScore({
+        algebra: [ 5, 5, 4, 3, 2],
+        geometry: [ 2, 3, 5, 4, 5, 3, 4],
+        russian: [ 5, 5, 5, 5 ],
+        physics: [ 5, 4, 3, 5, 4, 3],
+        music: [ 5, 5, 5],
+        english: [ 5, 5],
+        poetry: [ 4, 4, 5, 5],
+        chemistry: [5, 4, 2, 5, 5, 3, 4, 4],
+        french: [ 3, 5]
+    })
+);
